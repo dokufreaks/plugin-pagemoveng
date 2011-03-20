@@ -254,12 +254,16 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
         $this->doc .= DOKU_LF;
     }
 
+    /**
+      * Instruction for %% and <nowiki> are handled in the same way.
+      * It is not possible to distinguish between them. Therefore
+      * it is changed all to <nowiki>text</nowiki>
+      * (I found <nowiki> more suitable than %%)
+      *
+      * FIXME: This behavior should be fixed.
+      */
     function unformatted($text) {
-        if (strpos($text, '%%') !== false) {
-            $this->doc .= "<nowiki>$text</nowiki";
-        } else {
-            $this->doc .= "%%$text%%";
-        }
+        $this->doc .= "<nowiki>$text</nowiki";
     }
 
     function php($text, $wrapper='code') {
