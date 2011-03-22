@@ -269,7 +269,7 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
       * FIXME: This behavior should be fixed.
       */
     function unformatted($text) {
-        $this->doc .= "<nowiki>$text</nowiki";
+        $this->doc .= "<nowiki>$text</nowiki>";
     }
 
     function php($text, $wrapper='code') {
