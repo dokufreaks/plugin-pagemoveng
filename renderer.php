@@ -151,7 +151,7 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
     }
 
     function hr() {
-        $this->doc .= '----'.DOKU_LF;
+        $this->doc .= '----'.DOKU_LF.DOKU_LF;
     }
 
     function strong_open() {
