@@ -103,6 +103,7 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
 
     // @access public
     var $doc = '';        // will contain the whole document
+    var $quote_level = 0;
 
     function getFormat(){
         return 'pagemoveng';
@@ -290,15 +291,14 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
 
     function quote_open() {
         $this->doc .= '>';
+        $this->quote_level++;
     }
 
     function quote_close() {
-        $strpos = strrpos($this->doc, DOKU_LF);
-        if ($strpos === strlen($this->doc)) {
-            return;
+        $this->quote_level--;
+        if ($this->quote_level == 0 ) {
+            $this->doc .= DOKU_LF . DOKU_LF;
         }
-        $lastline = substr($this->doc, $strpos);
-        $this->doc = substr_replace($this->doc, preg_replace('/(>+)(.+)/', '\1 \2', $lastline), $strpos) . DOKU_LF;
     }
 
     function preformatted($text) {
