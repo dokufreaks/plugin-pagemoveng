@@ -302,7 +302,7 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
     }
 
     function preformatted($text) {
-        $this->doc .= preg_replace('/^/m', '  ', $text) . DOKU_LF;
+        $this->doc .= preg_replace('/^/m', '  ', $text) . DOKU_LF . DOKU_LF;
     }
 
     function file($text, $language=null, $filename=null) {
