@@ -122,15 +122,16 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
 
         // write the header
         $markup = str_repeat('=', 7 - $level);
-        $this->doc .= "$markup $text $markup" . DOKU_LF;
+        //$this->doc .= "$markup $text $markup" . DOKU_LF;
+        $this->doc .= "$markup $text $markup";
     }
 
     function section_open($level) {
-        $this->doc .= DOKU_LF;
+        $this->doc .= DOKU_LF . DOKU_LF;
     }
 
     function section_close() {
-        $this->doc .= DOKU_LF;
+        //$this->doc .= DOKU_LF;
     }
 
     function cdata($text) {
@@ -223,9 +224,12 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
         if (!isset($this->_liststack)) {
             $this->_liststack = array();
         }
+        // I don't want a new line before list
+        /*
         if (count($this->_liststack) === 0) {
             $this->doc .= DOKU_LF;
         }
+        */
         $this->_liststack[] = '*';
     }
 
@@ -240,9 +244,12 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
         if (!isset($this->_liststack)) {
             $this->_liststack = array();
         }
+        //I don't want to start list with open line
+        /*
         if (count($this->_liststack) === 0) {
             $this->doc .= DOKU_LF;
         }
+        */
         $this->_liststack[] = '-';
     }
 
