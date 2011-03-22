@@ -140,8 +140,14 @@ class renderer_plugin_pagemoveng extends Doku_Renderer {
         $this->doc = rtrim($this->doc, DOKU_LF) . DOKU_LF . DOKU_LF;
     }
 
+    /**
+      * Every linebreak should be followed by a single space.
+      *
+      * If there is more than one space, DokuWiki parser puts them
+      * into text and therfore the count of spaces is preserved.
+      */
     function linebreak() {
-        $this->doc .= ' \\\\'.DOKU_LF;
+        $this->doc .= '\\\\ ';
     }
 
     function hr() {
